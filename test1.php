@@ -38,3 +38,23 @@ Array
         )
 
 );*/
+
+$output = [];
+proc($x,$output);
+print_r($output);
+
+/**
+ * Трансформация массива
+ * @param $output
+ * @param array $x
+ */
+function proc(array $x,&$output)
+{
+    $key = array_pop($x); // забираем очередной ключ с конца
+    if(sizeof($x) == 0){ // завершаем рекурсию когда забрали последний ключ
+        return $output[$key] = '';
+    }else{
+        // создаем промежуточный ключ
+        proc($x,$output[$key]);
+    }
+}
